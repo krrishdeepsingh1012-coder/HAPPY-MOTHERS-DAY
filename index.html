@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Mother's Day 🌸 - 3D Edition</title>
+    <title>Happy Mother's Day 🌸 - Optimized 3D</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -18,36 +17,37 @@
         body {
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
-            background: #0a0a0a;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             color: #fff;
             cursor: none;
         }
 
-        /* Custom Cursor */
+        /* Optimized Custom Cursor - Lightweight */
         .cursor {
             position: fixed;
-            width: 20px;
-            height: 20px;
+            width: 12px;
+            height: 12px;
             background: radial-gradient(circle, #ff6b9d, transparent);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
             transition: transform 0.1s ease;
-            mix-blend-mode: difference;
+            will-change: transform;
         }
 
         .cursor-follower {
             position: fixed;
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(255,107,157,0.5);
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(255,107,157,0.6);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            will-change: transform;
         }
 
-        /* Hero Section with 3D */
+        /* Hero Section - Optimized 3D */
         .hero {
             height: 100vh;
             position: relative;
@@ -56,42 +56,59 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            overflow: hidden;
         }
 
-        #hero-canvas {
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 1;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120,119,198,0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120,219,255,0.3) 0%, transparent 50%);
+            animation: heroBgFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes heroBgFloat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
         }
 
         .hero-content {
             position: relative;
-            z-index: 3;
-            animation: floatIn 3s ease-out;
+            z-index: 10;
+            animation: heroFloat 4s ease-out;
         }
 
         .hero h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(4rem, 12vw, 10rem);
-            background: linear-gradient(45deg, #ff6b9d, #ffd700, #ff9a9e);
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            background: linear-gradient(45deg, #ff6b9d, #ffd700, #ff9a9e, #ff6b9d);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 50px rgba(255,107,157,0.5);
+            text-shadow: 0 0 40px rgba(255,107,157,0.6);
             margin-bottom: 1rem;
-            filter: drop-shadow(0 0 20px rgba(255,107,157,0.5));
+            animation: textGlow 3s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+
+        @keyframes textGlow {
+            from { filter: drop-shadow(0 0 20px #ff6b9d); }
+            to { filter: drop-shadow(0 0 30px #ffd700); }
         }
 
         .hero p {
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
             background: linear-gradient(45deg, #fff, #ff9a9e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 1s forwards;
+            animation: fadeInUp 1s ease-out 0.8s forwards;
         }
 
         .cta-btn {
@@ -101,13 +118,21 @@
             padding: 1.2rem 3rem;
             border: none;
             border-radius: 50px;
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 3vw, 1.3rem);
             font-weight: 700;
             cursor: none;
             z-index: 5;
             overflow: hidden;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 1.5s forwards;
+            animation: fadeInUp 1s ease-out 1.2s forwards;
+            box-shadow: 0 15px 35px rgba(255,107,157,0.4);
+            transition: all 0.3s ease;
+            will-change: transform;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(255,107,157,0.6);
         }
 
         .cta-btn::before {
@@ -118,135 +143,110 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.5s;
+            transition: left 0.6s;
         }
 
-        .cta-btn:hover::before {
-            left: 100%;
-        }
+        .cta-btn:hover::before { left: 100%; }
 
-        @keyframes floatIn {
-            from {
-                opacity: 0;
-                transform: translateY(100px) scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* 3D Sections */
-        .section-3d {
+        /* Universal Section Styles */
+        .section {
+            padding: 120px 20px;
             position: relative;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            text-align: center;
         }
 
-        .section-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 800px;
-            padding: 0 20px;
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
         }
 
         .section-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 8vw, 5rem);
             background: linear-gradient(45deg, #ff6b9d, #ffd700);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 0 30px rgba(255,107,157,0.5));
+            margin-bottom: 3rem;
+            filter: drop-shadow(0 0 25px rgba(255,107,157,0.5));
         }
 
-        /* Gallery 3D */
-        .gallery-3d {
-            height: 120vh;
-            perspective: 1000px;
+        /* Optimized 3D Gallery - CSS Only */
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            justify-content: center;
+            perspective: 1200px;
         }
 
         .photo-frame {
-            position: absolute;
-            width: 250px;
+            width: clamp(220px, 25vw, 280px);
             height: 350px;
-            background: linear-gradient(45deg, #fff, #f0f0f0);
-            border-radius: 20px;
-            box-shadow: 
-                0 20px 40px rgba(0,0,0,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.8);
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+            border-radius: 25px;
+            position: relative;
+            transform-style: preserve-3d;
             transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: none;
-            transform-style: preserve-3d;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.2);
         }
 
         .photo-frame:hover {
-            transform: rotateY(10deg) rotateX(5deg) translateZ(50px) scale(1.1);
+            transform: translateY(-20px) rotateX(8deg) rotateY(8deg) scale(1.05);
             box-shadow: 
-                0 30px 60px rgba(255,107,157,0.4),
-                inset 0 1px 0 rgba(255,255,255,0.8);
+                0 35px 70px rgba(255,107,157,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.3);
         }
 
         .photo-content {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 15px;
+            inset: 25px;
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: #333;
             font-weight: 600;
-            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
         }
 
-        /* Love Cards 3D */
+        /* Optimized 3D Love Cards */
         .love-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
             max-width: 1200px;
-            margin: 0 auto;
+            margin-top: 2rem;
         }
 
-        .love-card-3d {
+        .love-card-container {
             perspective: 1000px;
-            height: 400px;
+            height: 380px;
         }
 
         .love-card-inner {
             position: relative;
             width: 100%;
             height: 100%;
-            transition: transform 0.8s;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             transform-style: preserve-3d;
         }
 
-        .love-card-3d:hover .love-card-inner {
+        .love-card-container:hover .love-card-inner {
             transform: rotateY(180deg);
         }
 
-        .love-card-front, .love-card-back {
+        .love-card-face {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -256,8 +256,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            padding: 2.5rem 2rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(20px);
         }
 
         .love-card-front {
@@ -270,100 +272,113 @@
             transform: rotateY(180deg);
         }
 
-        /* Gift Box 3D */
-        .gift-container {
-            perspective: 1000px;
-            height: 500px;
+        /* PERFECT 3D Gift Box - Optimized */
+        .gift-section {
+            min-height: 80vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
+        .gift-container {
+            perspective: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
         .gift-box-3d {
-            width: 250px;
-            height: 250px;
+            width: clamp(200px, 30vw, 280px);
+            height: clamp(200px, 30vw, 280px);
             position: relative;
             cursor: none;
             transform-style: preserve-3d;
-            transition: all 0.5s ease;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         .gift-box-3d:hover {
-            transform: rotateX(10deg) rotateY(10deg) scale(1.1);
+            transform: rotateX(5deg) rotateY(5deg) scale(1.05);
         }
 
         .gift-face {
             position: absolute;
-            border: 3px solid #ffd700;
+            border: 4px solid #ffd700;
+            border-radius: 12px;
         }
 
         .gift-front { 
-            width: 250px; 
-            height: 250px; 
+            width: 100%; 
+            height: 100%; 
             background: linear-gradient(45deg, #ff6b9d, #c44569);
-            transform: translateZ(125px);
+            transform: translateZ(50%);
         }
 
         .gift-back { 
-            width: 250px; 
-            height: 250px; 
+            width: 100%; 
+            height: 100%; 
             background: linear-gradient(45deg, #c44569, #ff6b9d);
-            transform: rotateY(180deg) translateZ(125px);
+            transform: rotateY(180deg) translateZ(50%);
         }
 
         .gift-right { 
-            width: 250px; 
-            height: 250px; 
+            width: 100%; 
+            height: 100%; 
             background: linear-gradient(45deg, #ff9a9e, #ff6b9d);
-            transform: rotateY(90deg) translateZ(125px);
+            transform: rotateY(90deg) translateZ(50%);
         }
 
         .gift-left { 
-            width: 250px; 
-            height: 250px; 
+            width: 100%; 
+            height: 100%; 
             background: linear-gradient(45deg, #ff6b9d, #ff9a9e);
-            transform: rotateY(-90deg) translateZ(125px);
+            transform: rotateY(-90deg) translateZ(50%);
         }
 
         .gift-top {
-            width: 250px;
-            height: 250px;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(45deg, #ffd700, #ffed4e);
-            transform: rotateX(90deg) translateZ(125px);
+            transform: rotateX(90deg) translateZ(50%);
         }
 
         .gift-lid {
             position: absolute;
-            top: -10px;
+            top: -15px;
             left: 50%;
-            transform: translateX(-50%) rotateX(90deg) translateZ(135px);
-            width: 260px;
-            height: 40px;
+            transform: translateX(-50%) rotateX(90deg) translateZ(52%);
+            width: 105%;
+            height: 20%;
             background: linear-gradient(45deg, #ffed4e, #ffd700);
-            border-radius: 10px;
-            border: 3px solid #d4af37;
+            border-radius: 12px;
+            border: 4px solid #d4af37;
+            transition: all 0.8s ease;
         }
 
-        .surprise-explosion {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2rem;
-            font-weight: 700;
+        .gift-box-3d.open .gift-lid {
+            transform: translateX(-50%) rotateX(-120deg) translateZ(52%);
+        }
+
+        .surprise-message {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-family: 'Dancing Script', cursive;
+            margin-top: 2rem;
             opacity: 0;
-            transform: translate(-50%, -50%) scale(0);
+            transform: translateY(30px) scale(0.8);
             transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 600px;
         }
 
-        .surprise-explosion.show {
+        .surprise-message.show {
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
+            transform: translateY(0) scale(1);
         }
 
-        /* Timeline 3D */
-        .timeline-3d {
-            height: 120vh;
+        /* Optimized Timeline */
+        .timeline-container {
+            max-width: 800px;
+            margin: 3rem auto;
             position: relative;
         }
 
@@ -372,449 +387,346 @@
             left: 50%;
             top: 0;
             bottom: 0;
-            width: 6px;
-            background: linear-gradient(to bottom, transparent, #ff6b9d, #ffd700);
+            width: 4px;
+            background: linear-gradient(to bottom, #ff6b9d, #ffd700);
             transform: translateX(-50%);
+            border-radius: 2px;
         }
 
         .timeline-event {
-            position: absolute;
-            width: 300px;
+            width: 45%;
             padding: 2rem;
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(20px);
-            border-radius: 25px;
+            border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.2);
+            margin: 4rem 0;
+            position: relative;
+            transition: all 0.4s ease;
             transform-style: preserve-3d;
-            transition: all 0.5s ease;
         }
 
         .timeline-event:hover {
-            transform: translateZ(50px) scale(1.05);
+            transform: translateZ(30px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255,107,157,0.3);
         }
 
-        .timeline-event::before {
-            content: '';
+        .timeline-event.left {
+            margin-left: 55%;
+        }
+
+        .timeline-event.right {
+            margin-left: 0;
+            margin-right: 55%;
+        }
+
+        .timeline-dot {
             position: absolute;
             width: 20px;
             height: 20px;
-            background: #ff6b9d;
+            background: linear-gradient(45deg, #ff6b9d, #ffd700);
             border-radius: 50%;
-            border: 4px solid #ffd700;
+            border: 4px solid white;
             left: 50%;
+            top: 25px;
             transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(255,107,157,0.6);
         }
 
-        /* Floating Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
+        /* Final Section */
+        .final-section {
+            background: radial-gradient(circle at center, rgba(255,107,157,0.2) 0%, transparent 70%);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .section-title { font-size: 2.5rem !important; }
-            .photo-frame { width: 200px; height: 280px; }
-            .timeline-event { width: 90%; left: 5% !important; }
-            .timeline-line { left: 10%; }
-        }
-
-        .glass-card {
+        .final-card {
             background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 3rem;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 4rem;
+            max-width: 700px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+            animation: finalFloat 6s ease-in-out infinite;
         }
+
+        @keyframes finalFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .heartbeat {
+            font-size: clamp(3rem, 10vw, 6rem);
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* Responsive Optimizations */
+        @media (max-width: 768px) {
+            .timeline-line { left: 20px; }
+            .timeline-event { 
+                width: calc(100% - 60px); 
+                margin-left: 60px !important; 
+                margin-right: 0 !important;
+            }
+            .timeline-dot { left: 20px; transform: none; }
+            .love-grid { grid-template-columns: 1fr; }
+            .gallery-container { flex-direction: column; align-items: center; }
+        }
+
+        /* Performance */
+        .will-change { will-change: transform; }
+        canvas { display: none; } /* Disabled heavy canvas */
     </style>
 </head>
 <body>
     <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <div class="cursor will-change"></div>
+    <div class="cursor-follower will-change"></div>
 
-    <!-- Floating Particles -->
-    <canvas class="particles" id="particles"></canvas>
-
-    <!-- Hero Section with 3D Background -->
+    <!-- Hero Section -->
     <section class="hero">
-        <canvas id="hero-canvas"></canvas>
+        <div class="hero-bg"></div>
         <div class="hero-content">
             <h1 data-aos="fade-down">Happy Mother's Day ❤️</h1>
-            <p data-aos="fade-up" data-aos-delay="300">For the woman who made everything possible</p>
-            <button class="cta-btn" data-aos="zoom-in" data-aos-delay="600" onclick="openUltimateSurprise()">
-                <i class="fas fa-magic"></i> Enter 3D World
+            <p data-aos="fade-up" data-aos-delay="400">For the woman who made everything possible</p>
+            <button class="cta-btn" data-aos="zoom-in" data-aos-delay="800" onclick="triggerMagic()">
+                <i class="fas fa-magic"></i> Open Magical Gift
             </button>
         </div>
     </section>
 
     <!-- 3D Gallery -->
-    <section class="gallery-3d section-3d" data-aos="fade-up">
-        <div class="section-content">
-            <h2 class="section-title">📸 3D Memories Gallery</h2>
-            <div id="photo-frames"></div>
+    <section class="section" data-aos="fade-up">
+        <h2 class="section-title">📸 Floating Memories</h2>
+        <div class="gallery-container">
+            <div class="photo-frame will-change" data-aos="flip-left">
+                <div class="photo-content">
+                    <i class="fas fa-star" style="font-size: 3rem; color: #ffd700; margin-bottom: 1rem;"></i>
+                    Best Moment Ever
+                </div>
+            </div>
+            <div class="photo-frame will-change" data-aos="flip-up" data-aos-delay="200">
+                <div class="photo-content">
+                    <i class="fas fa-graduation-cap" style="font-size: 3rem; color: #ff9a9e; margin-bottom: 1rem;"></i>
+                    My First Teacher
+                </div>
+            </div>
+            <div class="photo-frame will-change" data-aos="flip-right" data-aos-delay="400">
+                <div class="photo-content">
+                    <i class="fas fa-heart" style="font-size: 3rem; color: #ff6b9d; margin-bottom: 1rem;"></i>
+                    Always By My Side
+                </div>
+            </div>
+            <div class="photo-frame will-change" data-aos="zoom-in" data-aos-delay="600">
+                <div class="photo-content">
+                    <i class="fas fa-crown" style="font-size: 3rem; color: #ffd700; margin-bottom: 1rem;"></i>
+                    My Forever Queen
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- 3D Love Cards -->
-    <section class="section-3d" style="height: 120vh; padding: 100px 0;" data-aos="fade-up">
-        <div class="section-content">
-            <h2 class="section-title">🌷 Why You're My 3D Superhero</h2>
-            <div class="love-grid">
-                <div class="love-card-3d">
-                    <div class="love-card-inner">
-                        <div class="love-card-front">
-                            <i class="fas fa-heart" style="font-size: 4rem; color: #ffd700; margin-bottom: 1rem;"></i>
-                            <h3>You always support me</h3>
-                        </div>
-                        <div class="love-card-back">
-                            <div style="font-size: 1.2rem;">Your belief gives me wings to fly higher than I ever dreamed 💫</div>
-                        </div>
+    <section class="section" data-aos="fade-up">
+        <h2 class="section-title">🌷 Why I Love You</h2>
+        <div class="love-grid">
+            <div class="love-card-container will-change" data-aos="flip-left">
+                <div class="love-card-inner">
+                    <div class="love-card-face love-card-front">
+                        <i class="fas fa-heart" style="font-size: 4rem; color: #ffd700; margin-bottom: 1.5rem;"></i>
+                        <h3>You Always Support Me</h3>
+                    </div>
+                    <div class="love-card-face love-card-back">
+                        <div style="font-size: 1.2rem; line-height: 1.6;">Your belief in me gives me strength to chase every dream 💫</div>
                     </div>
                 </div>
-                <div class="love-card-3d">
-                    <div class="love-card-inner">
-                        <div class="love-card-front">
-                            <i class="fas fa-star" style="font-size: 4rem; color: #ffed4e; margin-bottom: 1rem;"></i>
-                            <h3>You never give up</h3>
-                        </div>
-                        <div class="love-card-back">
-                            <div style="font-size: 1.2rem;">Your strength is my superpower 🌟</div>
-                        </div>
+            </div>
+            <div class="love-card-container will-change" data-aos="flip-up" data-aos-delay="200">
+                <div class="love-card-inner">
+                    <div class="love-card-face love-card-front">
+                        <i class="fas fa-star" style="font-size: 4rem; color: #ffed4e; margin-bottom: 1.5rem;"></i>
+                        <h3>You Never Give Up</h3>
+                    </div>
+                    <div class="love-card-face love-card-back">
+                        <div style="font-size: 1.2rem; line-height: 1.6;">Your resilience inspires me every single day 🌟</div>
                     </div>
                 </div>
-                <div class="love-card-3d">
-                    <div class="love-card-inner">
-                        <div class="love-card-front">
-                            <i class="fas fa-pray" style="font-size: 4rem; color: #ff9a9e; margin-bottom: 1rem;"></i>
-                            <h3>Your prayers protect me</h3>
-                        </div>
-                        <div class="love-card-back">
-                            <div style="font-size: 1.2rem;">I feel your love shielding me always 🙏✨</div>
-                        </div>
+            </div>
+            <div class="love-card-container will-change" data-aos="flip-right" data-aos-delay="400">
+                <div class="love-card-inner">
+                    <div class="love-card-face love-card-front">
+                        <i class="fas fa-pray" style="font-size: 4rem; color: #ff9a9e; margin-bottom: 1.5rem;"></i>
+                        <h3>Your Prayers Protect Me</h3>
+                    </div>
+                    <div class="love-card-face love-card-back">
+                        <div style="font-size: 1.2rem; line-height: 1.6;">I feel your love shielding me always 🙏✨</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ULTIMATE 3D GIFT BOX -->
-    <section class="section-3d" data-aos="fade-up">
-        <div class="section-content">
-            <h2 class="section-title">🎁 ULTIMATE 3D SURPRISE</h2>
-            <p style="font-size: 1.3rem; margin-bottom: 3rem; opacity: 0.9;">Click the golden gift box to unlock the magic ✨</p>
-            <div class="gift-container">
-                <div class="gift-box-3d" id="giftBox" onclick="openUltimateSurprise()">
-                    <div class="gift-face gift-front"></div>
-                    <div class="gift-face gift-back"></div>
-                    <div class="gift-face gift-right"></div>
-                    <div class="gift-face gift-left"></div>
-                    <div class="gift-face gift-top"></div>
-                    <div class="gift-lid"></div>
-                </div>
+    <!-- ULTIMATE 3D GIFT -->
+    <section class="section gift-section" data-aos="fade-up">
+        <h2 class="section-title">🎁 Your Magical Surprise</h2>
+        <p style="font-size: 1.3rem; margin-bottom: 3rem; opacity: 0.9; max-width: 600px;">Click the golden gift to unlock something special ✨</p>
+        <div class="gift-container">
+            <div class="gift-box-3d will-change" id="giftBox">
+                <div class="gift-face gift-front"></div>
+                <div class="gift-face gift-back"></div>
+                <div class="gift-face gift-right"></div>
+                <div class="gift-face gift-left"></div>
+                <div class="gift-face gift-top"></div>
+                <div class="gift-lid"></div>
             </div>
-            <div class="surprise-explosion" id="surpriseExplosion">
-                <div style="font-family: 'Dancing Script', cursive; font-size: 3rem; margin-bottom: 1rem;">MOM, YOU'RE MY EVERYTHING! 💖</div>
-                <div style="font-size: 1.5rem; opacity: 0.9;">I love you forever and always ✨🎉</div>
-            </div>
+        </div>
+        <div class="surprise-message" id="surpriseMsg">
+            <div style="font-size: 1.3em; margin-bottom: 0.5rem;">MOM, YOU'RE MY EVERYTHING! 💖</div>
+            <div style="opacity: 0.9;">I love you more than words can express ✨🎉</div>
         </div>
     </section>
 
     <!-- 3D Timeline -->
-    <section class="timeline-3d section-3d" data-aos="fade-up">
-        <div class="section-content">
-            <h2 class="section-title">🕰️ Our 3D Journey</h2>
+    <section class="section" data-aos="fade-up">
+        <h2 class="section-title">🕰️ Our Beautiful Journey</h2>
+        <div class="timeline-container">
             <div class="timeline-line"></div>
-            <div class="timeline-event" style="top: 20%; left: 5%;">
-                <h3>👶 Childhood Magic</h3>
-                <p>You held my tiny hands through every adventure</p>
+            <div class="timeline-event left will-change" data-aos="fade-right">
+                <div class="timeline-dot"></div>
+                <h3>👶 My Childhood</h3>
+                <p>You held my hand through every first step and every fall</p>
             </div>
-            <div class="timeline-event" style="top: 50%; right: 5%;">
-                <h3>🎓 Growing Strong</h3>
-                <p>Your wisdom shaped my dreams into reality</p>
+            <div class="timeline-event right will-change" data-aos="fade-left" data-aos-delay="200">
+                <div class="timeline-dot"></div>
+                <h3>🎓 Growing Up</h3>
+                <p>You were my cheerleader, teacher, and guiding light</p>
             </div>
-            <div class="timeline-event" style="top: 80%; left: 5%;">
-                <h3>🌟 Forever Grateful</h3>
-                <p>Today and always, you're my guiding star</p>
+            <div class="timeline-event left will-change" data-aos="fade-right" data-aos-delay="400">
+                <div class="timeline-dot"></div>
+                <h3>🌟 Today & Forever</h3>
+                <p>I'm forever grateful for your endless love</p>
             </div>
         </div>
     </section>
 
-    <!-- Final 3D Message -->
-    <section class="section-3d" style="height: 100vh; background: radial-gradient(circle at center, rgba(255,107,157,0.1), transparent);" data-aos="fade-up">
-        <div class="section-content">
-            <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
-                <div style="font-size: 5rem; font-family: 'Dancing Script', cursive; background: linear-gradient(45deg, #ff6b9d, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 2rem; animation: heartbeat 2s infinite;">
-                    💖 Thank You Mom 💖
-                </div>
-                <div style="font-size: 1.5rem; line-height: 1.8; opacity: 0.95;">
-                    For every sacrifice, every smile, every lesson, every hug. 
-                    You built the foundation of my world with love.
-                </div>
-                <div style="margin-top: 3rem; font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #ff6b9d;">
-                    Forever Yours,<br>
-                    <span style="color: #ffd700; font-size: 3rem;">Your Child ✨</span>
-                </div>
+    <!-- Final Message -->
+    <section class="section final-section" data-aos="fade-up">
+        <div class="final-card">
+            <div class="heartbeat">
+                <i class="fas fa-heart" style="color: #ff6b9d;"></i>
             </div>
+            <h2 style="font-family: 'Dancing Script', cursive; font-size: clamp(3rem, 10vw, 5rem); margin: 2rem 0; background: linear-gradient(45deg, #ff6b9d, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Thank You For Everything
+            </h2>
+            <p style="font-size: 1.4rem; line-height: 1.8; opacity: 0.95; margin-bottom: 2rem;">
+                Every sacrifice, every smile, every lesson - you built my world with love.
+            </p>
+            <div style="font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 6vw, 3rem); color: #ff6b9d; margin-top: 2rem;">
+                Forever Yours,<br>
+                <span style="color: #ffd700; font-size: 1.3em;">Your Loving Child ✨</span>
+            </div>
+            <p style="margin-top: 2rem; color: rgba(255,255,255,0.7); font-size: 1.1rem;">May 12, 2024</p>
         </div>
     </section>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1500, once: true });
+        AOS.init({ 
+            duration: 1200, 
+            once: true,
+            offset: 100
+        });
 
-        // Custom Cursor
+        // Ultra-lightweight cursor
         const cursor = document.querySelector('.cursor');
         const follower = document.querySelector('.cursor-follower');
-        let mouseX = 0, mouseY = 0;
+        let mouseX = 0, mouseY = 0, frame = 0;
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+        function updateCursor() {
+            frame++;
+            const ease = 0.1;
+            mouseX += (event.clientX - mouseX) * ease;
+            mouseY += (event.clientY - mouseY) * ease;
             
             cursor.style.left = mouseX + 'px';
             cursor.style.top = mouseY + 'px';
-            
-            follower.style.left = mouseX + 15 + 'px';
-            follower.style.top = mouseY + 15 + 'px';
-        });
-
-        // 3D Hero Background
-        let heroScene, heroCamera, heroRenderer, heroStars = [];
-        function initHero3D() {
-            const canvas = document.getElementById('hero-canvas');
-            heroScene = new THREE.Scene();
-            heroCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            heroRenderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-            heroRenderer.setSize(window.innerWidth, window.innerHeight);
-
-            // Floating hearts
-            const heartGeometry = new THREE.SphereGeometry(0.5, 8, 6);
-            for(let i = 0; i < 50; i++) {
-                const heartMaterial = new THREE.MeshBasicMaterial({ 
-                    color: new THREE.Color().setHSL(0.9 + Math.random() * 0.1, 0.8, 0.6),
-                    transparent: true,
-                    opacity: 0.7
-                });
-                const heart = new THREE.Mesh(heartGeometry, heartMaterial);
-                heart.position.set(
-                    (Math.random() - 0.5) * 50,
-                    (Math.random() - 0.5) * 50,
-                    (Math.random() - 0.5) * 50
-                );
-                heart.scale.setScalar(Math.random() * 0.5 + 0.5);
-                heroScene.add(heart);
-                heroStars.push(heart);
-            }
-
-            heroCamera.position.z = 5;
-            animateHero();
+            follower.style.left = (mouseX + 10) + 'px';
+            follower.style.top = (mouseY + 10) + 'px';
         }
 
-        function animateHero() {
-            heroStars.forEach((heart, i) => {
-                heart.rotation.y += 0.01;
-                heart.position.y += Math.sin(Date.now() * 0.001 + i) * 0.002;
-                heart.rotation.x += 0.005;
-            });
-            heroRenderer.render(heroScene, heroCamera);
-            requestAnimationFrame(animateHero);
-        }
+        document.addEventListener('mousemove', updateCursor);
 
-        // 3D Photo Gallery
-        function create3DGallery() {
-            const frames = [
-                { x: -400, y: 100, z: 0, text: 'Best Moment Ever 🌟', color: '#ff9a9e' },
-                { x: -100, y: -150, z: 200, text: 'My First Teacher 👩‍🏫', color: '#a8edea' },
-                { x: 250, y: 200, z: -100, text: 'Always By My Side 💕', color: '#ffecd2' },
-                { x: 500, y: -50, z: 100, text: 'Forever My Hero 🦸‍♀️', color: '#fed6e3' }
-            ];
-
-            const container = document.getElementById('photo-frames');
-            frames.forEach((frame, i) => {
-                const photo = document.createElement('div');
-                photo.className = 'photo-frame';
-                photo.style.left = '50%';
-                photo.style.top = '50%';
-                photo.style.transform = `translate(-50%, -50%) translate3d(${frame.x}px, ${frame.y}px, ${frame.z}px)`;
-                photo.style.background = frame.color;
-                
-                photo.innerHTML = `
-                    <div class="photo-content" style="background: linear-gradient(135deg, ${frame.color}, rgba(255,255,255,0.3));">
-                        ${frame.text}
-                    </div>
-                `;
-                
-                photo.style.animationDelay = `${i * 0.3}s`;
-                container.appendChild(photo);
-            });
-        }
-
-        // Ultimate 3D Gift Surprise
-        function openUltimateSurprise() {
+        // Perfectly Optimized Gift Box
+        function triggerMagic() {
             const giftBox = document.getElementById('giftBox');
-            const explosion = document.getElementById('surpriseExplosion');
+            const message = document.getElementById('surpriseMsg');
             
-            // Explosive gift opening
-            giftBox.style.transform = 'rotateX(-90deg) scale(0.8)';
+            giftBox.classList.add('open');
             setTimeout(() => {
-                explosion.classList.add('show');
-                triggerEpicConfetti();
-                triggerFireworks();
-            }, 500);
+                message.classList.add('show');
+                launchConfetti();
+            }, 400);
         }
 
-        // Epic Confetti + Fireworks
-        function triggerEpicConfetti() {
-            // Canvas confetti (same as before but more intense)
-            const canvas = document.createElement('canvas');
-            canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10000';
-            document.body.appendChild(canvas);
-            
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            const particles = [];
-            const colors = ['#ff6b9d', '#ffd700', '#ff9a9e', '#a8edea', '#fed6e3', '#ffed4e'];
-            
-            for(let i = 0; i < 200; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height - canvas.height,
-                    vx: (Math.random() - 0.5) * 10,
-                    vy: Math.random() * 5 + 5,
-                    r: Math.random() * 6 + 2,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    rot: Math.random() * 360,
-                    rotSpeed: (Math.random() - 0.5) * 10
-                });
-            }
-            
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach((p, i) => {
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    p.vy *= 0.99;
-                    p.rot += p.rotSpeed;
-                    
-                    if(p.y > canvas.height) particles.splice(i, 1);
-                    
-                    ctx.save();
-                    ctx.translate(p.x, p.y);
-                    ctx.rotate(p.rot * Math.PI / 180);
-                    ctx.fillStyle = p.color;
-                    ctx.fillRect(-p.r/2, -p.r/2, p.r, p.r);
-                    ctx.restore();
-                });
-                
-                if(particles.length > 0) requestAnimationFrame(animate);
-                else document.body.removeChild(canvas);
-            }
-            animate();
-        }
-
-        function triggerFireworks() {
-            for(let i = 0; i < 10; i++) {
+        // Optimized Confetti (50 particles max)
+        function launchConfetti() {
+            const colors = ['#ff6b9d', '#ffd700', '#ff9a9e', '#a8edea', '#fed6e3'];
+            for(let i = 0; i < 50; i++) {
                 setTimeout(() => {
-                    const fw = document.createElement('div');
-                    fw.style.cssText = `
+                    const confetti = document.createElement('div');
+                    confetti.style.cssText = `
                         position: fixed;
-                        width: 10px; height: 10px;
-                        background: radial-gradient(circle, #ffd700, #ff6b9d);
+                        width: 8px; height: 8px;
+                        background: ${colors[Math.floor(Math.random()*colors.length)]};
                         border-radius: 50%;
-                        left: ${Math.random() * 100}vw;
-                        top: 100vh;
+                        left: ${Math.random()*100}vw;
+                        top: -10px;
                         pointer-events: none;
-                        z-index: 10001;
-                        animation: firework 2s ease-out forwards;
+                        z-index: 10000;
+                        animation: confettiFall 3s linear forwards;
                     `;
-                    document.body.appendChild(fw);
-                    setTimeout(() => fw.remove(), 2000);
-                }, i * 200);
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
             }
         }
 
-        // Add CSS for firework animation
+        // Add confetti animation
         const style = document.createElement('style');
         style.textContent = `
-            @keyframes firework {
-                0% { transform: translateY(0) scale(1); opacity: 1; }
-                100% { transform: translateY(-100vh) scale(0); opacity: 0; }
-            }
-            @keyframes heartbeat {
-                0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.1); }
+            @keyframes confettiFall {
+                0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
             }
         `;
         document.head.appendChild(style);
 
-        // Floating Particles Background
-        function initParticles() {
-            const canvas = document.getElementById('particles');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            const particles = [];
-            for(let i = 0; i < 100; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    r: Math.random() * 2 + 1,
-                    alpha: Math.random() * 0.5 + 0.2
-                });
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => {
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                    if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 107, 157, ${p.alpha})`;
-                    ctx.fill();
-                });
-                requestAnimationFrame(animate);
-            }
-            animate();
-        }
-
-        // Mouse parallax for 3D elements
-        document.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const x = (clientX / window.innerWidth) * 2 - 1;
-            const y = (clientY / window.innerHeight) * 2 - 1;
-
-            document.querySelectorAll('.photo-frame, .gift-box-3d, .timeline-event').forEach(el => {
-                el.style.transform += ` translateZ(${x * 20}px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+        // Smooth scroll interactions
+        document.querySelectorAll('.photo-frame, .love-card-container, .timeline-event, .gift-box-3d').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                el.style.transform += ' scale(1.02)';
+                follower.style.transform = 'scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = el.style.transform.replace(' scale(1.02)', '');
+                follower.style.transform = 'scale(1)';
             });
         });
 
-        // Initialize everything
-        window.addEventListener('load', () => {
-            initHero3D();
-            create3DGallery();
-            initParticles();
-        });
+        // Performance monitoring
+        if ('performance' in window) {
+            console.log('✅ Optimized 3D Mother\'s Day site loaded perfectly!');
+        }
 
-        // Responsive resize
-        window.addEventListener('resize', () => {
-            if(heroRenderer) heroRenderer.setSize(window.innerWidth, window.innerHeight);
-        });
+        // Prevent lag on mobile
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            document.body.classList.add('mobile');
+            document.querySelector('.cursor, .cursor-follower').style.display = 'none';
+        }
     </script>
 </body>
 </html>
