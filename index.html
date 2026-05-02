@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Mother's Day 🌸 - Optimized 3D</title>
+    <title>Happy Mother's Day 🌸 - Perfect 3D Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,7 +22,7 @@
             cursor: none;
         }
 
-        /* Optimized Custom Cursor - Lightweight */
+        /* Custom Cursor - Only on Desktop */
         .cursor {
             position: fixed;
             width: 12px;
@@ -33,6 +33,7 @@
             z-index: 9999;
             transition: transform 0.1s ease;
             will-change: transform;
+            display: none;
         }
 
         .cursor-follower {
@@ -45,9 +46,15 @@
             z-index: 9998;
             transition: all 0.2s ease;
             will-change: transform;
+            display: none;
         }
 
-        /* Hero Section - Optimized 3D */
+        body:not(.mobile) .cursor,
+        body:not(.mobile) .cursor-follower {
+            display: block;
+        }
+
+        /* Hero Section */
         .hero {
             height: 100vh;
             position: relative;
@@ -120,7 +127,7 @@
             border-radius: 50px;
             font-size: clamp(1rem, 3vw, 1.3rem);
             font-weight: 700;
-            cursor: none;
+            cursor: pointer;
             z-index: 5;
             overflow: hidden;
             opacity: 0;
@@ -128,9 +135,11 @@
             box-shadow: 0 15px 35px rgba(255,107,157,0.4);
             transition: all 0.3s ease;
             will-change: transform;
+            touch-action: manipulation;
         }
 
-        .cta-btn:hover {
+        .cta-btn:hover,
+        .cta-btn:active {
             transform: translateY(-8px) scale(1.05);
             box-shadow: 0 25px 50px rgba(255,107,157,0.6);
         }
@@ -146,11 +155,14 @@
             transition: left 0.6s;
         }
 
-        .cta-btn:hover::before { left: 100%; }
+        .cta-btn:hover::before,
+        .cta-btn:active::before { 
+            left: 100%; 
+        }
 
         /* Universal Section Styles */
         .section {
-            padding: 120px 20px;
+            padding: 100px 20px;
             position: relative;
             min-height: 100vh;
             display: flex;
@@ -174,7 +186,7 @@
             filter: drop-shadow(0 0 25px rgba(255,107,157,0.5));
         }
 
-        /* Optimized 3D Gallery - CSS Only */
+        /* Optimized 3D Gallery */
         .gallery-container {
             display: flex;
             flex-wrap: wrap;
@@ -192,7 +204,7 @@
             position: relative;
             transform-style: preserve-3d;
             transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: none;
+            cursor: pointer;
             border: 1px solid rgba(255,255,255,0.2);
             backdrop-filter: blur(15px);
             box-shadow: 
@@ -200,7 +212,8 @@
                 inset 0 1px 0 rgba(255,255,255,0.2);
         }
 
-        .photo-frame:hover {
+        .photo-frame:hover,
+        .photo-frame:active {
             transform: translateY(-20px) rotateX(8deg) rotateY(8deg) scale(1.05);
             box-shadow: 
                 0 35px 70px rgba(255,107,157,0.4),
@@ -220,7 +233,7 @@
             background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
         }
 
-        /* Optimized 3D Love Cards */
+        /* 3D Love Cards */
         .love-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -242,7 +255,8 @@
             transform-style: preserve-3d;
         }
 
-        .love-card-container:hover .love-card-inner {
+        .love-card-container:hover .love-card-inner,
+        .love-card-container:active .love-card-inner {
             transform: rotateY(180deg);
         }
 
@@ -272,7 +286,7 @@
             transform: rotateY(180deg);
         }
 
-        /* PERFECT 3D Gift Box - Optimized */
+        /* FIXED 3D Gift Box - NO AUTO-OPEN */
         .gift-section {
             min-height: 80vh;
             display: flex;
@@ -287,19 +301,22 @@
             align-items: center;
             justify-content: center;
             margin: 2rem 0;
+            /* FIXED: No hover animation by default */
         }
 
         .gift-box-3d {
             width: clamp(200px, 30vw, 280px);
             height: clamp(200px, 30vw, 280px);
             position: relative;
-            cursor: none;
+            cursor: pointer;
             transform-style: preserve-3d;
             transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            /* FIXED: No initial transform */
         }
 
+        /* FIXED: Only subtle hover, NO AUTO-OPEN */
         .gift-box-3d:hover {
-            transform: rotateX(5deg) rotateY(5deg) scale(1.05);
+            transform: rotateX(5deg) rotateY(5deg) scale(1.03);
         }
 
         .gift-face {
@@ -353,9 +370,10 @@
             background: linear-gradient(45deg, #ffed4e, #ffd700);
             border-radius: 12px;
             border: 4px solid #d4af37;
-            transition: all 0.8s ease;
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
+        /* FIXED: Only opens on CLICK */
         .gift-box-3d.open .gift-lid {
             transform: translateX(-50%) rotateX(-120deg) translateZ(52%);
         }
@@ -368,6 +386,7 @@
             transform: translateY(30px) scale(0.8);
             transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             max-width: 600px;
+            pointer-events: none;
         }
 
         .surprise-message.show {
@@ -375,7 +394,7 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Optimized Timeline */
+        /* Timeline */
         .timeline-container {
             max-width: 800px;
             margin: 3rem auto;
@@ -404,9 +423,11 @@
             position: relative;
             transition: all 0.4s ease;
             transform-style: preserve-3d;
+            cursor: pointer;
         }
 
-        .timeline-event:hover {
+        .timeline-event:hover,
+        .timeline-event:active {
             transform: translateZ(30px) scale(1.02);
             box-shadow: 0 25px 50px rgba(255,107,157,0.3);
         }
@@ -431,6 +452,12 @@
             top: 25px;
             transform: translateX(-50%);
             box-shadow: 0 0 20px rgba(255,107,157,0.6);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-event:hover .timeline-dot {
+            transform: translateX(-50%) scale(1.3);
+            box-shadow: 0 0 30px rgba(255,107,157,0.8);
         }
 
         /* Final Section */
@@ -464,7 +491,7 @@
             50% { transform: scale(1.15); }
         }
 
-        /* Responsive Optimizations */
+        /* Responsive */
         @media (max-width: 768px) {
             .timeline-line { left: 20px; }
             .timeline-event { 
@@ -475,14 +502,14 @@
             .timeline-dot { left: 20px; transform: none; }
             .love-grid { grid-template-columns: 1fr; }
             .gallery-container { flex-direction: column; align-items: center; }
+            .cursor, .cursor-follower { display: none !important; }
         }
 
         /* Performance */
         .will-change { will-change: transform; }
-        canvas { display: none; } /* Disabled heavy canvas */
     </style>
 </head>
-<body>
+<body class="mobile">
     <!-- Custom Cursor -->
     <div class="cursor will-change"></div>
     <div class="cursor-follower will-change"></div>
@@ -493,17 +520,17 @@
         <div class="hero-content">
             <h1 data-aos="fade-down">Happy Mother's Day ❤️</h1>
             <p data-aos="fade-up" data-aos-delay="400">For the woman who made everything possible</p>
-            <button class="cta-btn" data-aos="zoom-in" data-aos-delay="800" onclick="triggerMagic()">
-                <i class="fas fa-magic"></i> Open Magical Gift
+            <button class="cta-btn" data-aos="zoom-in" data-aos-delay="800">
+                Scroll to see the magic ✨
             </button>
         </div>
     </section>
 
-    <!-- 3D Gallery -->
+    <!-- Gallery -->
     <section class="section" data-aos="fade-up">
         <h2 class="section-title">📸 Floating Memories</h2>
         <div class="gallery-container">
-            <div class="photo-frame will-change" data-aos="flip-left">
+            <div class="WhatsApp Image 2026-05-03 at 12.50.27 AM.jpeg" data-aos="flip-left">
                 <div class="photo-content">
                     <i class="fas fa-star" style="font-size: 3rem; color: #ffd700; margin-bottom: 1rem;"></i>
                     Best Moment Ever
@@ -530,7 +557,7 @@
         </div>
     </section>
 
-    <!-- 3D Love Cards -->
+    <!-- Love Cards -->
     <section class="section" data-aos="fade-up">
         <h2 class="section-title">🌷 Why I Love You</h2>
         <div class="love-grid">
@@ -570,27 +597,52 @@
         </div>
     </section>
 
-    <!-- ULTIMATE 3D GIFT -->
+    <!-- FIXED Golden Gift Box Section -->
     <section class="section gift-section" data-aos="fade-up">
-        <h2 class="section-title">🎁 Your Magical Surprise</h2>
-        <p style="font-size: 1.3rem; margin-bottom: 3rem; opacity: 0.9; max-width: 600px;">Click the golden gift to unlock something special ✨</p>
+        <h2 class="section-title">🎁 Click Your Golden Gift!</h2>
+        <p style="font-size: 1.3rem; margin-bottom: 3rem; opacity: 0.9; max-width: 600px;">
+            Tap/Click the golden gift box to unlock your special surprise ✨
+        </p>
         <div class="gift-container">
-            <div class="gift-box-3d will-change" id="giftBox">
+            <div class="gift-box-3d will-change" id="giftBox" tabindex="0">
                 <div class="gift-face gift-front"></div>
                 <div class="gift-face gift-back"></div>
                 <div class="gift-face gift-right"></div>
                 <div class="gift-face gift-left"></div>
                 <div class="gift-face gift-top"></div>
                 <div class="gift-lid"></div>
+                <!-- Play Button Overlay -->
+                <div style="
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 80px;
+                    height: 80px;
+                    background: rgba(255,255,255,0.95);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.5rem;
+                    color: #ff6b9d;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    z-index: 10;
+                " onclick="openGift()" onmouseenter="this.style.transform='translate(-50%, -50%) scale(1.1)'" 
+                   onmouseleave="this.style.transform='translate(-50%, -50%)'">
+                    <i class="fas fa-play"></i>
+                </div>
             </div>
         </div>
         <div class="surprise-message" id="surpriseMsg">
             <div style="font-size: 1.3em; margin-bottom: 0.5rem;">MOM, YOU'RE MY EVERYTHING! 💖</div>
-            <div style="opacity: 0.9;">I love you more than words can express ✨🎉</div>
+            <div style="opacity: 0.9;">I love you more than words can express. Thank you for being you! ✨🎉</div>
         </div>
     </section>
 
-    <!-- 3D Timeline -->
+    <!-- Timeline -->
     <section class="section" data-aos="fade-up">
         <h2 class="section-title">🕰️ Our Beautiful Journey</h2>
         <div class="timeline-container">
@@ -641,38 +693,50 @@
             offset: 100
         });
 
-        // Ultra-lightweight cursor
-        const cursor = document.querySelector('.cursor');
-        const follower = document.querySelector('.cursor-follower');
-        let mouseX = 0, mouseY = 0, frame = 0;
-
-        function updateCursor() {
-            frame++;
-            const ease = 0.1;
-            mouseX += (event.clientX - mouseX) * ease;
-            mouseY += (event.clientY - mouseY) * ease;
-            
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
-            follower.style.left = (mouseX + 10) + 'px';
-            follower.style.top = (mouseY + 10) + 'px';
+        // Mobile Detection
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            document.body.classList.add('mobile');
         }
 
-        document.addEventListener('mousemove', updateCursor);
+        // Lightweight Cursor (Desktop Only)
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+        let mouseX = 0, mouseY = 0;
 
-        // Perfectly Optimized Gift Box
-        function triggerMagic() {
+        document.addEventListener('mousemove', (e) => {
+            if (!document.body.classList.contains('mobile')) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursor.style.left = mouseX + 'px';
+                cursor.style.top = mouseY + 'px';
+                follower.style.left = (mouseX + 10) + 'px';
+                follower.style.top = (mouseY + 10) + 'px';
+            }
+        });
+
+        // FIXED: Gift Box - ONLY OPENS ON EXPLICIT CLICK/TAP
+        function openGift() {
             const giftBox = document.getElementById('giftBox');
             const message = document.getElementById('surpriseMsg');
             
+            // Add open class
             giftBox.classList.add('open');
+            
+            // Show message after delay
             setTimeout(() => {
                 message.classList.add('show');
                 launchConfetti();
-            }, 400);
+            }, 500);
+            
+            // Play sound effect (optional)
+            playSuccessSound();
         }
 
-        // Optimized Confetti (50 particles max)
+        // Click/Tap detection for gift box
+        document.getElementById('giftBox').addEventListener('click', openGift);
+        document.getElementById('giftBox').addEventListener('touchstart', openGift);
+
+        // Optimized Confetti
         function launchConfetti() {
             const colors = ['#ff6b9d', '#ffd700', '#ff9a9e', '#a8edea', '#fed6e3'];
             for(let i = 0; i < 50; i++) {
@@ -695,38 +759,60 @@
             }
         }
 
-        // Add confetti animation
+        // Success sound (Web Audio API - lightweight)
+        function playSuccessSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.3);
+            } catch(e) {
+                // Silent fail on unsupported browsers
+            }
+        }
+
+        // Dynamic confetti animation
         const style = document.createElement('style');
         style.textContent = `
             @keyframes confettiFall {
                 0% { transform: translateY(0) rotate(0deg); opacity: 1; }
                 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
             }
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes heroFloat {
+                from { opacity: 0; transform: translateY(50px) scale(0.9); }
+                to { opacity: 1; transform: translateY(0) scale(1); }
+            }
         `;
         document.head.appendChild(style);
 
-        // Smooth scroll interactions
-        document.querySelectorAll('.photo-frame, .love-card-container, .timeline-event, .gift-box-3d').forEach(el => {
+        // Interactive hover effects
+        document.querySelectorAll('.photo-frame, .love-card-container, .timeline-event').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                el.style.transform += ' scale(1.02)';
-                follower.style.transform = 'scale(1.5)';
+                if (!document.body.classList.contains('mobile')) {
+                    document.querySelector('.cursor-follower').style.transform = 'scale(1.5)';
+                }
             });
             el.addEventListener('mouseleave', () => {
-                el.style.transform = el.style.transform.replace(' scale(1.02)', '');
-                follower.style.transform = 'scale(1)';
+                document.querySelector('.cursor-follower').style.transform = 'scale(1)';
             });
         });
 
-        // Performance monitoring
-        if ('performance' in window) {
-            console.log('✅ Optimized 3D Mother\'s Day site loaded perfectly!');
-        }
-
-        // Prevent lag on mobile
-        if (/Mobi|Android/i.test(navigator.userAgent)) {
-            document.body.classList.add('mobile');
-            document.querySelector('.cursor, .cursor-follower').style.display = 'none';
-        }
+        console.log('✅ PERFECT 3D Mother\'s Day Website Loaded! Gift opens ONLY on click/tap.');
     </script>
 </body>
 </html>
